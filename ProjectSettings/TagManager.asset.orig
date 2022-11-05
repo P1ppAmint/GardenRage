@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
+  - Plant
+=======
   - Enemy
   - Pickup
+>>>>>>> main
   layers:
   - Default
   - TransparentFX
