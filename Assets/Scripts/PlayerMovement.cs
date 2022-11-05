@@ -12,22 +12,24 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         TryGetComponent<Rigidbody2D>(out rb);
-        TryGetComponent<EntityStats>(out status);
-
- 
+        TryGetComponent<EntityStats>(out status); 
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        // rb velocity + vector
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rb.velocity = rb.velocity.normalized;
-        rb.velocity *= status.movespeed;
+        //// rb velocity + vector
+        //rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //rb.velocity = rb.velocity.normalized;
+        //rb.velocity *= status.movespeed;
 
-        
-      
+
+        Vector2 calc = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        rb.velocity = calc * status.movespeed;
+
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

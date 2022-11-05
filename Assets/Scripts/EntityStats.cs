@@ -12,17 +12,4 @@ public class EntityStats : MonoBehaviour
     public float movespeed;
     public float range;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        health = 25;
-        movespeed = 2;
-        range = 20;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     UnityEvent onEnterRageMode;
     UnityEvent onExitRageMode;
 
+    //TODO remove
+    public GameObject testtarget;
 
     private static List<GameObject> enemyList;
 
@@ -24,6 +26,9 @@ public class GameManager : MonoBehaviour
     {
         EnemyList = new List<GameObject>();
         isRaging = false;
+
+        //TODO remove
+        EnemyList.Add(testtarget);
     }
 
     private void Update()

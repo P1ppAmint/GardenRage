@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    //TODO remove later
-    [SerializeField]
-    private float range;
+    private EntityStats stats;
 
     [SerializeField]
     private Transform attackPoint;
@@ -15,7 +13,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private float attackspeed;
 
-    [SerializeField]
+
     private GameObject target;
 
     private bool isShooting;
@@ -27,13 +25,16 @@ public class WeaponManager : MonoBehaviour
             Debug.Log($"attackPoint is Null on {this.name}");
         }
 
-
+        stats = transform.GetComponentsInParent<EntityStats>()[0];
+        if (stats == null) Debug.Log($"Stats script not found in {name}");
     }
 
     void Update()
     {
         //TODO move target search to a coroutine for better performance
         target = FindClosestTargetInRange();
+        Debug.Log(target);
+
         if (target == null)
         {
             isShooting = false;
@@ -45,10 +46,8 @@ public class WeaponManager : MonoBehaviour
             {
                 isShooting = true;
                 StartCoroutine(Shoot());                
-            }            
-
-        }     
-
+            }
+        }
     }
 
 
@@ -73,11 +72,12 @@ public class WeaponManager : MonoBehaviour
 
     private GameObject FindClosestTargetInRange()
     {
+        //TODO change attacking entity to player
         GameObject attackingEntity = gameObject;
         GameObject closestEnemy = null;
-        float closestDistance = range;
+        float closestDistance = stats.range;
 
-        foreach  (GameObject enemy in GameManager.EnemyList)
+        foreach(GameObject enemy in GameManager.EnemyList)
         {
             float d = Vector2.Distance(enemy.transform.position, attackingEntity.transform.position);
 
@@ -94,6 +94,6 @@ public class WeaponManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, stats.range);       
     }
 }
