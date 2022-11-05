@@ -7,28 +7,22 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
 
-    public bool isRaging;
+    public  bool isRaging;
 
     [SerializeField]
-    private int rageActivationLimit;
+    private  int rageActivationLimit;
 
     UnityEvent onEnterRageMode;
     UnityEvent onExitRageMode;
 
-    //TODO remove
-    public GameObject testtarget;
+    private List<GameObject> enemyList;
 
-    private static List<GameObject> enemyList;
-
-    public static List<GameObject> EnemyList { get => enemyList; private set => enemyList = value; }
+    public List<GameObject> EnemyList { get => enemyList; private set => enemyList = value; }
 
     void Awake()
     {
         EnemyList = new List<GameObject>();
         isRaging = false;
-
-        //TODO remove
-        EnemyList.Add(testtarget);
     }
 
     private void Update()
@@ -45,7 +39,7 @@ public class GameManager : MonoBehaviour
         ChangeRageMode();
     }
 
-    public void AddEnemyToList(GameObject enemy)
+    public  void AddEnemyToList(GameObject enemy)
     {
         if (enemy == null) Debug.Log("Enemy you're trying to add is null");
 
@@ -54,7 +48,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void ChangeRageMode()
+    private  void ChangeRageMode()
     {
         if(EnemyList.Count >= rageActivationLimit)
         {

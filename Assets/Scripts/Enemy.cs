@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     public float speed;
-    public GameObject target;
+    private GameObject target;
     public bool isRaging;
     
     private Rigidbody2D myBody;
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     bool CheckRageStatus()
     {
         //GetRageStatus from rageHandler
-        return true;
+        return false;
     }
 
     void GetTargetTransform()

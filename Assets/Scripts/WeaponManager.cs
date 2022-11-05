@@ -13,6 +13,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private float attackspeed;
 
+    [SerializeField]
+    GameManager gameManager;
+
 
     private GameObject target;
 
@@ -77,7 +80,7 @@ public class WeaponManager : MonoBehaviour
         GameObject closestEnemy = null;
         float closestDistance = stats.range;
 
-        foreach(GameObject enemy in GameManager.EnemyList)
+        foreach(GameObject enemy in gameManager.EnemyList)
         {
             float d = Vector2.Distance(enemy.transform.position, attackingEntity.transform.position);
 
@@ -93,7 +96,9 @@ public class WeaponManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (stats == null) return;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats.range);       
+        Gizmos.DrawWireSphere(transform.position, stats.range);
     }
 }

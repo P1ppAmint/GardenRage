@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     EntityStats status;
-
+    [SerializeField]
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // if raging -> other behaviour on enemy hit (takes damage if in rage mode when hitting enemies)
             Debug.Log("Enemy hit");
+
+            gameManager.RemoveEnemyFromList(collision.gameObject);
             Destroy(collision.gameObject);
         }
 

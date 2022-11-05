@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject spawnedEnemy;
     private GameObject spawnLoc;
+    [SerializeField]
+    public GameManager gameManager;
 
     private int randomIndexEnemy;
     private int randomIndexSpawn;
@@ -32,6 +34,8 @@ public class EnemySpawner : MonoBehaviour
             randomIndexSpawn = Random.Range(0, spawnerReference.Length);
 
             spawnedEnemy = Instantiate(enemyReference[randomIndexEnemy]);
+            gameManager.AddEnemyToList(spawnedEnemy);
+
             spawnLoc = spawnerReference[randomIndexSpawn];
 
             spawnedEnemy.transform.position = spawnLoc.transform.position;

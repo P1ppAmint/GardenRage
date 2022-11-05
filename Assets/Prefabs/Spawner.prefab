@@ -45,13 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f850383ca903664b97ea172159e2173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterReference:
-  - {fileID: 2676501165822318384, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
+  enemyReference: []
   spawnerReference:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 8697633765241571051}
 --- !u!1001 &4995994329808793891
 PrefabInstance:
