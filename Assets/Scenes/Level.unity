@@ -896,6 +896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 807483403}
+  - component: {fileID: 807483404}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -920,6 +921,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &807483404
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807483402}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 9.778651, y: -11.029335}
+  - {x: -7.5119076, y: -10.832205}
+  - {x: -7.546114, y: -3.7804637}
+  - {x: -13.427596, y: -3.7587347}
+  - {x: -13.4453945, y: 13.404955}
+  - {x: 15.563603, y: 13.316601}
+  - {x: 15.599333, y: -3.7077498}
+  - {x: 9.962255, y: -4.0073743}
+  - {x: 9.854727, y: -10.971591}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &879785101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2183,6 +2213,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 937402370}
+    - target: {fileID: 551191758409043605, guid: 4c5c9d8eeac8b9348ad21721fd020fdd, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 551191758409043607, guid: 4c5c9d8eeac8b9348ad21721fd020fdd, type: 3}
       propertyPath: m_RootOrder
       value: 4
