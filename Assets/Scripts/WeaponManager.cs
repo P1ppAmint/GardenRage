@@ -32,6 +32,12 @@ public class WeaponManager : MonoBehaviour
 
         stats = transform.GetComponentsInParent<EntityStats>()[0];
         if (stats == null) Debug.Log($"Stats script not found in {name}");
+
+    }
+
+    private void OnEnable()
+    {
+        isShooting = false;
     }
 
     void Update()
