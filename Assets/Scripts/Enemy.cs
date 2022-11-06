@@ -5,44 +5,43 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public float speed;
     private GameObject target;
-    public bool isRaging;
+
     
     private Rigidbody2D myBody;
     private Vector2 direction;
 
-    Transform targetTransform;
+    private Transform targetTransform;
+
+    private EntityStats stats;
 
 
     void Start()
     {
-        isRaging = CheckRageStatus();
+        stats = GetComponent<EntityStats>();
+        if (stats == null) Debug.Log($"No entitystats found in {gameObject}");
+
         myBody = GetComponent<Rigidbody2D>();
         GetTargetTransform();
+
     }
 
     void FixedUpdate()
     {
-        EnemyMove();
+        MoveEnemy();
     }
     
-    void EnemyMove()
+    void MoveEnemy()
     {
         direction = target.transform.position - myBody.transform.position;
         direction = direction.normalized;
-        myBody.velocity = new Vector2(speed * direction.x, speed * direction.y);
+        myBody.velocity = new Vector2(direction.x, direction.y)*stats.movespeed;
     }
 
-    bool CheckRageStatus()
-    {
-        //GetRageStatus from rageHandler
-        return false;
-    }
 
     void GetTargetTransform()
     {
-        if(isRaging == false)
+        if(stats.gameManager.isRaging == false)
         {
             target = GameObject.FindWithTag("Plant");
             if (target != null)

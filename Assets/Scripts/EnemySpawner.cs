@@ -21,8 +21,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnEnemy());
-        
+        StartCoroutine(SpawnEnemy());        
     }
     IEnumerator SpawnEnemy()
     {
@@ -34,12 +33,22 @@ public class EnemySpawner : MonoBehaviour
             randomIndexSpawn = Random.Range(0, spawnerReference.Length);
 
             spawnedEnemy = Instantiate(enemyReference[randomIndexEnemy]);
+
+            //Bad Code
+            spawnedEnemy.GetComponent<EntityStats>().gameManager = gameManager;
+
+            spawnedEnemy.GetComponent<RageHandler>().Initialize();
+
             gameManager.AddEnemyToList(spawnedEnemy);
+
 
             spawnLoc = spawnerReference[randomIndexSpawn];
 
             spawnedEnemy.transform.position = spawnLoc.transform.position;
-            spawnedEnemy.GetComponent<Enemy>().speed = Random.Range(4, 10);
+
+
+            //should affect the EntityStats.movespeed
+            //spawnedEnemy.GetComponent<Enemy>().speed = Random.Range(4, 10);
         
         }
 

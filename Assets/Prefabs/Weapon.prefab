@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b10db49ad985048a12d260b794eca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0
   attackPoint: {fileID: 5900949191831684512}
   projectilePrefab: {fileID: 5885803778004659755, guid: 6741664fc4c49a9429e04cf3d5538792, type: 3}
   attackspeed: 1
+  damage: 1
+  gameManager: {fileID: 0}

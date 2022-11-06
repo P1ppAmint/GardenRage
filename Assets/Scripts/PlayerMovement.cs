@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-    EntityStats status;
+    EntityStats stats;
+    EntityStats enemyStats;
     [SerializeField]
     private GameManager gameManager;
 
@@ -13,38 +14,42 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         TryGetComponent<Rigidbody2D>(out rb);
-        TryGetComponent<EntityStats>(out status); 
+        TryGetComponent<EntityStats>(out stats); 
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //// rb velocity + vector
-        //rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        //rb.velocity = rb.velocity.normalized;
-        //rb.velocity *= status.movespeed;
-
-
         Vector2 calc = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-        rb.velocity = calc * status.movespeed;
-
-
+        rb.velocity = calc * stats.movespeed;
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // tag Enemy 
-        // tag Pickup
 
         if (collision.gameObject.tag == "Enemy")
         {
+            // get enemy stats
+            collision.gameObject.TryGetComponent<EntityStats>(out enemyStats);
             // if raging -> other behaviour on enemy hit (takes damage if in rage mode when hitting enemies)
             Debug.Log("Enemy hit");
 
-            gameManager.RemoveEnemyFromList(collision.gameObject);
-            Destroy(collision.gameObject);
+            if(gameManager.isRaging)
+            {
+                // enemy does damage to player
+                stats.TakeDamage(4);
+                // player kills enemy
+
+                enemyStats.TakeDamage(999);
+            }
+            else
+            {
+                enemyStats.TakeDamage(999);
+            }
+
+
         }
 
         // not affected by rage mode

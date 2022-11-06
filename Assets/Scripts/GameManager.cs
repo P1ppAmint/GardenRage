@@ -7,13 +7,13 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
 
-    public  bool isRaging;
+    public bool isRaging;
 
     [SerializeField]
     private  int rageActivationLimit;
 
-    UnityEvent onEnterRageMode;
-    UnityEvent onExitRageMode;
+    public UnityEvent onEnterRageMode;
+    public UnityEvent onExitRageMode;
 
     private List<GameObject> enemyList;
 
@@ -54,7 +54,9 @@ public class GameManager : MonoBehaviour
         {
             if (isRaging == true) return;
             isRaging = true;
-            onExitRageMode.Invoke();
+            onEnterRageMode.Invoke();
+            Debug.Log("Invoked EnterRageMode");
+
         }
         else
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityStats : MonoBehaviour
 {
-
+    public GameManager gameManager;
     // Health
     // MovementSpeed
     // Range
@@ -12,4 +12,18 @@ public class EntityStats : MonoBehaviour
     public float movespeed;
     public float range;
 
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            if (gameObject.tag == "Enemy")
+            {
+                gameManager.RemoveEnemyFromList(gameObject);
+            }
+
+            Destroy(gameObject);
+        }
+    }
 }
