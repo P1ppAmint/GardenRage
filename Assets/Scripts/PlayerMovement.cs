@@ -32,21 +32,21 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             // get enemy stats
-            gameObject.TryGetComponent<EntityStats>(out enemyStats);
+            collision.gameObject.TryGetComponent<EntityStats>(out enemyStats);
             // if raging -> other behaviour on enemy hit (takes damage if in rage mode when hitting enemies)
             Debug.Log("Enemy hit");
 
             if(gameManager.isRaging)
             {
                 // enemy does damage to player
-                stats.takeDamage(4);
+                stats.TakeDamage(4);
                 // player kills enemy
-                
-                enemyStats.takeDamage(999)
+
+                enemyStats.TakeDamage(999);
             }
             else
             {
-                enemyStats.takeDamage(999);
+                enemyStats.TakeDamage(999);
             }
 
 

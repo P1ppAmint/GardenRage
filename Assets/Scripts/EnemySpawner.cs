@@ -37,6 +37,8 @@ public class EnemySpawner : MonoBehaviour
             //Bad Code
             spawnedEnemy.GetComponent<EntityStats>().gameManager = gameManager;
 
+            spawnedEnemy.GetComponent<RageHandler>().Initialize();
+
             gameManager.AddEnemyToList(spawnedEnemy);
 
 

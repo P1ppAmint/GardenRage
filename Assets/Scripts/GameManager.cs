@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
             if (isRaging == true) return;
             isRaging = true;
             onEnterRageMode.Invoke();
+            Debug.Log("Invoked EnterRageMode");
+
         }
         else
         {

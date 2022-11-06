@@ -16,11 +16,26 @@ public class RageHandler : MonoBehaviour
     [SerializeField]
     private RagingObject entityType;
     [SerializeField]
+    private EntityStats stats;
+
     private GameManager gameManager;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        if (entityType == RagingObject.Player)
+        { 
+            Initialize();
+        }
+    }
+
+    // Start is called before the first frame update
+    public void Initialize()
+    {
+        stats = GetComponent<EntityStats>();
+        gameManager = stats.gameManager;
+        Debug.Log(gameManager == null);
+        Debug.Log(entityType);
+
         switch (entityType)
         {
             case RagingObject.Player:
@@ -46,8 +61,10 @@ public class RageHandler : MonoBehaviour
     {
         // activates weapon
         // get list of weapons
+        Debug.Log("Executes RageEnterScript");
         for (int index=0; index < transform.childCount; index++)
         {
+            Debug.Log(transform.GetChild(index).name);
             transform.GetChild(index).gameObject.SetActive(true);
         }
     }
