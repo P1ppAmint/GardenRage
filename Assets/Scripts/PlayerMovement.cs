@@ -9,12 +9,15 @@ public class PlayerMovement : MonoBehaviour
     EntityStats enemyStats;
     [SerializeField]
     private GameManager gameManager;
+    private Animator anim;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         TryGetComponent<Rigidbody2D>(out rb);
-        TryGetComponent<EntityStats>(out stats); 
+        TryGetComponent<EntityStats>(out stats);
+        TryGetComponent<Animator>(out anim);
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 calc = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
         rb.velocity = calc * stats.movespeed;
+        AnimatePlayer();
 
     }
 
@@ -60,5 +64,19 @@ public class PlayerMovement : MonoBehaviour
 
             // pickup logic with weapons
         }
+    }
+
+    void AnimatePlayer()
+    {
+        if (rb.velocity.magnitude > 0)
+        {
+
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
+
     }
 }

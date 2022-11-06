@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent onEnterRageMode;
     public UnityEvent onExitRageMode;
-
     private List<GameObject> enemyList;
+    private Animator[] animList;
 
     public List<GameObject> EnemyList { get => enemyList; private set => enemyList = value; }
 
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         EnemyList = new List<GameObject>();
         isRaging = false;
+        animList = FindObjectsOfType<Animator>();
     }
 
     private void Update()
@@ -54,6 +55,10 @@ public class GameManager : MonoBehaviour
         {
             if (isRaging == true) return;
             isRaging = true;
+            foreach (Animator anim in animList)
+            {
+                anim.SetBool("isRaging", true);
+            }
             onEnterRageMode.Invoke();
             Debug.Log("Invoked EnterRageMode");
 
@@ -62,6 +67,10 @@ public class GameManager : MonoBehaviour
         {
             if (isRaging == false) return;
             isRaging = false;
+            foreach (Animator anim in animList)
+            {
+            anim.SetBool("isRaging", false);
+            }
             onExitRageMode.Invoke();
         }
     }   
