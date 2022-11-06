@@ -16,7 +16,14 @@ public class EntityStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <= 0)
+
+        if (gameObject.tag == "Player")
+        {
+            HealthbarManager.SetHealth(health);
+        }
+
+
+        if (health <= 0)
         {
             if (gameObject.tag == "Enemy")
             {
