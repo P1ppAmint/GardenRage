@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
     {
         if(stats.gameManager.isRaging == false)
         {
+            Debug.Log(target == null);
             target = GameObject.FindWithTag("Plant");
             if (target != null)
             {
