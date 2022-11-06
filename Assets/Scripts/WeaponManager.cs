@@ -12,9 +12,11 @@ public class WeaponManager : MonoBehaviour
     private GameObject projectilePrefab;
     [SerializeField]
     private float attackspeed;
+    [SerializeField]
+    private int damage;
 
     [SerializeField]
-    GameManager gameManager;
+    private GameManager gameManager;
 
 
     private GameObject target;
@@ -36,7 +38,7 @@ public class WeaponManager : MonoBehaviour
     {
         //TODO move target search to a coroutine for better performance
         target = FindClosestTargetInRange();
-        Debug.Log(target);
+        //Debug.Log(target);
 
         if (target == null)
         {
@@ -54,7 +56,11 @@ public class WeaponManager : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Creates Bullets initializes their movement
+    /// Waits between every shot
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Shoot()
     {
         while(isShooting == true)
@@ -63,15 +69,17 @@ public class WeaponManager : MonoBehaviour
 
             GameObject projectile = Instantiate(projectilePrefab, attackPoint.transform.position, Quaternion.identity);
             ProjectileManager projectileManager;
+
+            //Set tag for collision handling
+            projectile.tag = transform.parent.tag;
             projectile.TryGetComponent<ProjectileManager>(out projectileManager);
 
-            projectileManager.InitializeProjectile(aimDirection);
+            projectileManager.InitializeProjectile(aimDirection, damage);
 
             yield return new WaitForSeconds(1.0f/attackspeed);
 
         }
     }
-
 
     private GameObject FindClosestTargetInRange()
     {
