@@ -6,71 +6,69 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    
 
-    public bool isRaging;
+    private const bool V = false;
+    private static bool isRaging = V;
+
+    private static List<GameObject> enemyList = new List<GameObject>();
 
     [SerializeField]
-    private  int rageActivationLimit;
+    private int rageActivationLimit;
 
-    public UnityEvent onEnterRageMode;
-    public UnityEvent onExitRageMode;
-    private List<GameObject> enemyList;
-    private Animator[] animList;
+    
+    public static UnityEvent onEnterRageMode = new();
+    public static UnityEvent onExitRageMode = new();
 
-    public List<GameObject> EnemyList { get => enemyList; private set => enemyList = value; }
 
-    void Awake()
+    public static bool IsRaging { get => isRaging; private set => isRaging = value; }
+    public static List<GameObject> EnemyList { get => enemyList; private set => enemyList = value; }
+    public static int RageActivationLimit { get; set; }
+
+
+    private void Awake()
     {
-        EnemyList = new List<GameObject>();
-        isRaging = false;
-        animList = FindObjectsOfType<Animator>();
+        RageActivationLimit = rageActivationLimit;
     }
 
-    private void Update()
+    public static void RemoveEnemyFromList(GameObject enemy)
     {
-        //For Debug Purpose
-        //Debug.Log($"Raging: {isRaging}");
-    }
-
-    public void RemoveEnemyFromList(GameObject enemy)
-    {
-        if (enemy == null) Debug.Log("Enemy you're trying to remove is null");
+        if (enemy == null)
+        {
+            Debug.Log("Enemy you're trying to remove is null");
+            return;
+        }
 
         EnemyList.Remove(enemy);
         ChangeRageMode();
     }
 
-    public  void AddEnemyToList(GameObject enemy)
+    public static void AddEnemyToList(GameObject enemy)
     {
-        if (enemy == null) Debug.Log("Enemy you're trying to add is null");
+        if (enemy == null)
+        {
+            Debug.Log("Enemy you're trying to add is null");
+            return;
+        }        
 
         EnemyList.Add(enemy);
         ChangeRageMode();
     }
 
 
-    private  void ChangeRageMode()
+    private static void ChangeRageMode()
     {
-        if(EnemyList.Count >= rageActivationLimit)
+        if(EnemyList.Count >= RageActivationLimit)
         {
-            if (isRaging == true) return;
-            isRaging = true;
-            foreach (Animator anim in animList)
-            {
-                anim.SetBool("isRaging", true);
-            }
+            if (IsRaging == true) return;
+            IsRaging = true;            
             onEnterRageMode.Invoke();
-            Debug.Log("Invoked EnterRageMode");
-
+            //Debug.Log("Invoked EnterRageMode");
         }
         else
         {
-            if (isRaging == false) return;
-            isRaging = false;
-            foreach (Animator anim in animList)
-            {
-            anim.SetBool("isRaging", false);
-            }
+            if (IsRaging == false) return;
+            IsRaging = false;
             onExitRageMode.Invoke();
         }
     }   

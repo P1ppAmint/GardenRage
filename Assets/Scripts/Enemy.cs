@@ -35,15 +35,15 @@ public class Enemy : MonoBehaviour
     {
         direction = target.transform.position - myBody.transform.position;
         direction = direction.normalized;
-        myBody.velocity = new Vector2(direction.x, direction.y)*stats.movespeed;
+        myBody.velocity = new Vector2(direction.x, direction.y)*stats.Movespeed;
     }
 
 
     void GetTargetTransform()
     {
-        if(stats.gameManager.isRaging == false)
+        if(GameManager.IsRaging == false)
         {
-            Debug.Log(target == null);
+            //Debug.Log(target == null);
             target = GameObject.FindWithTag("Plant");
             if (target != null)
             {

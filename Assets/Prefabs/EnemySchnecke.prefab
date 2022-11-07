@@ -7,38 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1861769667, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-      propertyPath: m_Size.x
-      value: 2.7996101
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861769667, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-      propertyPath: m_Size.y
-      value: 2.199216
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861769667, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.13201946
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861769667, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.04001093
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861769667, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3.4666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861769667, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.64
-      objectReference: {fileID: 0}
     - target: {fileID: 2676501165822318384, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
       propertyPath: m_Name
       value: EnemySchnecke
       objectReference: {fileID: 0}
-    - target: {fileID: 2676501165822318389, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1679265880, guid: 2834ca882fbaed14ab4250f418975388, type: 3}
     - target: {fileID: 2676501165822318390, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -83,30 +55,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6207416057208638910, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
+      propertyPath: entityType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
---- !u!1 &6226269468980646694 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2676501165822318384, guid: 74d79d935dbffd54199c7769ee4c7fdc, type: 3}
-  m_PrefabInstance: {fileID: 8308280090684392470}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &3901181778679624504
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6226269468980646694}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 494ca26b50925a7479d9192d6b24e479, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

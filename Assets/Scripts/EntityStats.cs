@@ -2,35 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityStats : MonoBehaviour
+abstract public class EntityStats : MonoBehaviour
 {
-    public GameManager gameManager;
-    // Health
-    // MovementSpeed
-    // Range
-    public int health;
-    public float movespeed;
-    public float range;
+    [SerializeField]
+    private int health;
+    [SerializeField]
+    private float movespeed;
+    [SerializeField]
+    private float range;
+
+    public int Health { get => health; set => health = value; }
+    public float Movespeed { get => movespeed; set => movespeed = value; }
+    public float Range { get => range; set => range = value; }
 
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-
-        if (gameObject.tag == "Player")
-        {
-            HealthbarManager.SetHealth(health);
-        }
-
-
-        if (health <= 0)
-        {
-            if (gameObject.tag == "Enemy")
-            {
-                gameManager.RemoveEnemyFromList(gameObject);
-            }
-
-            Destroy(gameObject);
-        }
+        Health -= damage;
+        if (Health <= 0)    OnDeath();
     }
+
+    public void InstaKill()
+    {
+        OnDeath();
+    }
+
+    abstract protected void OnDeath();
+    
 }

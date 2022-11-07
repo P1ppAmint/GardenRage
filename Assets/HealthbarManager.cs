@@ -15,10 +15,8 @@ public class HealthbarManager : MonoBehaviour
     private void Start()
     {
         Slider = slider;
-        SetMaxHealth(stats.health);
+        SetMaxHealth(stats.Health);
     }
-
-
     
     private void SetMaxHealth(int maxhealth)
     {

@@ -5,14 +5,17 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
+    private float minSpawnrate;
+    [SerializeField]
+    private float maxSpawnrate;
+    [SerializeField]
     private GameObject[] enemyReference;
     [SerializeField]
     private GameObject[] spawnerReference;
 
     private GameObject spawnedEnemy;
     private GameObject spawnLoc;
-    [SerializeField]
-    public GameManager gameManager;
+    
 
     private int randomIndexEnemy;
     private int randomIndexSpawn;
@@ -27,19 +30,14 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true) { 
 
-            yield return new WaitForSeconds(Random.Range(1, 5));
+            yield return new WaitForSeconds(Random.Range((minSpawnrate != 0 ? 1.0f / minSpawnrate : 0), (maxSpawnrate != 0 ? 1.0f / maxSpawnrate : 0)));
         
             randomIndexEnemy = Random.Range(0, enemyReference.Length);
             randomIndexSpawn = Random.Range(0, spawnerReference.Length);
 
             spawnedEnemy = Instantiate(enemyReference[randomIndexEnemy]);
 
-            //Bad Code
-            spawnedEnemy.GetComponent<EntityStats>().gameManager = gameManager;
-
-            spawnedEnemy.GetComponent<RageHandler>().Initialize();
-
-            gameManager.AddEnemyToList(spawnedEnemy);
+            GameManager.AddEnemyToList(spawnedEnemy);
 
 
             spawnLoc = spawnerReference[randomIndexSpawn];

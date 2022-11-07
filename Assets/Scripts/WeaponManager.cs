@@ -15,9 +15,6 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private int damage;
 
-    [SerializeField]
-    private GameManager gameManager;
-
 
     private GameObject target;
 
@@ -92,9 +89,9 @@ public class WeaponManager : MonoBehaviour
         //TODO change attacking entity to player
         GameObject attackingEntity = gameObject;
         GameObject closestEnemy = null;
-        float closestDistance = stats.range;
+        float closestDistance = stats.Range;
 
-        foreach(GameObject enemy in gameManager.EnemyList)
+        foreach(GameObject enemy in GameManager.EnemyList)
         {
             float d = Vector2.Distance(enemy.transform.position, attackingEntity.transform.position);
 
@@ -113,6 +110,6 @@ public class WeaponManager : MonoBehaviour
         if (stats == null) return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats.range);
+        Gizmos.DrawWireSphere(transform.position, stats.Range);
     }
 }

@@ -4,53 +4,45 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody2D rb;
-    EntityStats stats;
-    EntityStats enemyStats;
-    [SerializeField]
-    private GameManager gameManager;
-    private Animator anim;
-    
+    private Rigidbody2D rb;
+    private EntityStats stats;
+    private Animator animator;    
 
     // Start is called before the first frame update
     void Start()
     {
         TryGetComponent<Rigidbody2D>(out rb);
         TryGetComponent<EntityStats>(out stats);
-        TryGetComponent<Animator>(out anim);
+        TryGetComponent<Animator>(out animator);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         Vector2 calc = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-        rb.velocity = calc * stats.movespeed;
+        rb.velocity = calc * stats.Movespeed;
         AnimatePlayer();
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.tag == "Enemy")
         {
             // get enemy stats
-            collision.gameObject.TryGetComponent<EntityStats>(out enemyStats);
+            collision.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyStats);
             // if raging -> other behaviour on enemy hit (takes damage if in rage mode when hitting enemies)
-            Debug.Log("Enemy hit");
+            //Debug.Log("Enemy hit");
 
-            if(gameManager.isRaging)
+            if(GameManager.IsRaging)
             {
                 // enemy does damage to player
-                stats.TakeDamage(4);
+                stats.TakeDamage(enemyStats.ContactDamage);
                 // player kills enemy
-
-                enemyStats.TakeDamage(999);
+                enemyStats.InstaKill();
             }
             else
             {
-                enemyStats.TakeDamage(999);
+                enemyStats.InstaKill();
             }
 
 
@@ -70,12 +62,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (rb.velocity.magnitude > 0)
         {
-
-            anim.SetBool("isWalking", true);
+            animator.SetBool("isWalking", true);
         }
         else
         {
-            anim.SetBool("isWalking", false);
+            animator.SetBool("isWalking", false);
         }
 
     }
